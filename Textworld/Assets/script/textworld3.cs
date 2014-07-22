@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class textworld2 : MonoBehaviour {
+public class textworld3 : MonoBehaviour {
 
 	string currentRoom = "Barn";
 			// remembers our current location in world
@@ -12,9 +12,9 @@ public class textworld2 : MonoBehaviour {
 		// if I declare a variable inside Update(),
 		// then I can ONLY use this variable inside Update() !! 
 		// also, a "buffer" is a staging area for prepare data 
-		string textBuffer = "You are currently" + currentRoom;
+		string textBuffer = "You are currently in the " + currentRoom;
 
-		if (currentRoom == "at the Barn" ) {
+		if (currentRoom == "Barn" ) {
 				// all your lobby code will go here later!
 			textBuffer += "\nYou see a Piglet!"; 
 			textBuffer += "\npress [W] to bring the Piggy to the house";
@@ -24,7 +24,7 @@ public class textworld2 : MonoBehaviour {
 			} else if (Input.GetKeyDown (KeyCode.S) ) {
 				currentRoom = "Outside";
 			}
-		} else if (currentRoom == "at the House") { 
+		} else if (currentRoom == "House") { 
 			textBuffer += "\nYou're waiting with Piggy.";
 
 			if (hasCarrots == false) {
@@ -43,7 +43,8 @@ public class textworld2 : MonoBehaviour {
 					currentRoom = "Kitchen";
 				}
 			}
-		} else if (currentRoom == "at the Kitchen" ) {
+		
+		} else if (currentRoom == "Kitchen" ) {
 			textBuffer += "\nPiggy wants a bowl of apples and pears.";
 
 			if (hasKnife == false) {
@@ -52,30 +53,34 @@ public class textworld2 : MonoBehaviour {
 				if (Input.GetKeyDown (KeyCode.S) ) {
 					currentRoom = "Stove";
 					}
-			} else {
+		} else {
 			textBuffer += "\nYou make a fruit salad for Piggy and he is ready to go to sleep.";
-			textBuffer += "\nTo go to the bedroom, Press [B] ";
-			if (Input.GetKeyDown (KeyCode.Q) ) {
-				currentRoom = "Bedroom";
+			textBuffer += "\nTo go to bed, Press [B] ";
+			if (Input.GetKeyDown (KeyCode.B) ) {
+				currentRoom = "Bed";
 				}
 			}
-		} if (currentRoom == "at the Stove" ) {
+		} if ( currentRoom == "Bed" ) {
+			textBuffer += "\nYou and piggy cuddle in bed and take a nap.";
+			textBuffer += "\nCongratulations! You've completed the game! (◡‿◡✿)"; 
+
+
+		} if (currentRoom == "Stove" ) {
 			textBuffer += "\nYou walk towards the stove and see on the side a knife.";
 			textBuffer += "\nPress [F] to go back to the kitchen to make some fruit salad for Piggy!";
 			hasKnife = true;
 			if (Input.GetKeyDown (KeyCode.F) ) {
 				currentRoom = "Kitchen";
 			}
-		} else if (currentRoom == "in the Bedroom") {
+		} else if (currentRoom == "Bedroom") {
 			 textBuffer += "\nYou try to take a nap with Piggy but he's hungry!";
 	         textBuffer += "\nGo back to the House entrance to go to the kitchen.";
 			 textBuffer += "\nPress [H] to return.";
 			   if (Input.GetKeyDown (KeyCode.H) ) {
 					currentRoom = "House";
 				}
-		} if (currentRoom == "in Bed" ) {
-			textBuffer += "\nPiggy and you cuddle up for a nap together";
-			textBuffer += "\nYou've completed the game! Yahoo! (◡‿◡✿) ";
+		
+
 
 		} else if (currentRoom == "Outside" ) {
 			textBuffer += "\nYou walk outside and see the bright sun!";
